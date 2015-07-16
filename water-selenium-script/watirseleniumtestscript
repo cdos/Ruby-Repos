@@ -1,0 +1,21 @@
+require 'watir'
+require 'watir-webdriver'
+
+
+
+#Code that Executes FireFox browser.
+caps = Selenium::WebDriver::Remote::Capabilities.firefox
+
+caps.platform = :WINDOWS
+caps[:name] = "Watir WebDriver"
+
+browser = Watir::Browser.new(
+    :remote,
+    :url => "http://localhost:4444/wd/hub",
+    :desired_capabilities => caps)
+
+browser.goto "http://10.221.209.252"
+browser.link(:text => "Settings").click
+
+puts browser.text.include? 'General Settings'
+
